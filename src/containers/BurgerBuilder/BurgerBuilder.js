@@ -69,11 +69,15 @@ class BurgerBuilder extends Component {
   }
 
   orderHandler = () => {
-      this.setState({ordering: true})
+    this.setState({ ordering: true })
   }
 
-  orderCancelHandler = () =>{
-      this.setState({ordering: false})
+  orderCancelHandler = () => {
+    this.setState({ ordering: false })
+  }
+
+  orderContinueHandler = () => {
+    alert('You continue!')
   }
 
   render() {
@@ -86,7 +90,12 @@ class BurgerBuilder extends Component {
     return (
       <Aux>
         <Modal show={this.state.ordering} modalClosed={this.orderCancelHandler}>
-          <OrderSummary ingredients={this.state.ingredients} />
+          <OrderSummary
+            ingredients={this.state.ingredients}
+            orderCancelled={this.orderCancelHandler}
+            orderContinued={this.orderContinueHandler}
+            price={this.state.totalPrice}
+          />
         </Modal>
         <Burger ingredients={this.state.ingredients} />
         <BuildControls
